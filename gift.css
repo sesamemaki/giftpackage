@@ -5,7 +5,7 @@
   --no-of-steps: 8;
   --primary-hue: 260;
   --secondary-hue: 45;
-  --bg: black;
+  --bg: #588157;
   --primary: hsl(var(--primary-hue), 80%, 50%);
   --secondary: hsl(var(--secondary-hue), 100%, 50%);
   /* --ribbon-bg: linear-gradient(90deg, var(--secondary) 0 10%, transparent 10% 25%, var(--secondary) 25% 75%, transparent 75% 90%, var(--secondary) 90%);
@@ -19,6 +19,7 @@
   box-sizing: border-box;
   transform-style: preserve-3d;
 }
+
 body {
   background: var(--bg);
   min-height: 100vh;
@@ -29,7 +30,7 @@ body {
 }
 input {
   position: fixed;
-  top: 0;
+  /* top: 0;
   left: 0;
   width: 1px;
   height: 1px;
@@ -38,7 +39,7 @@ input {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
-  border-width: 0;
+  border-width: 0; */
 }
 .close,
 .open {
@@ -47,12 +48,14 @@ input {
   width: 100vw;
   z-index: 2;
   /* transform: scale(var(--scale, 1)) translate3d(0, 0, 50vmin); */
-  transition: transform 0s
+  /* transition: transform 0s
     var(
       --reveal-delay,
       calc(((var(--no-of-steps, 8) + 1) * var(--delay, 0.2)) * 1s)
-    );
+    ); */
 }
+
+
 #package:checked ~ .close,
 .open {
   --scale: 0;
@@ -60,11 +63,13 @@ input {
 }
 #package:checked ~ .open {
   --scale: 1;
-  --reveal-delay: calc(((var(--no-of-steps, 15) + 1) * var(--delay, 0.2)) * 1s);
+  --reveal-delay: calc(((var(--no-of-steps, 8) + 1) * var(--delay, 0.2)) * 1s);
 }
+
 #package:checked ~ .scene {
   --packaged: 1;
 }
+
 .scene {
   transform: rotateX(calc(var(--rotate-x, -24) * 1deg))
     rotateY(calc(var(--rotate-y, -32) * 1deg)) rotateX(90deg)
@@ -90,8 +95,14 @@ input {
   height: calc(var(--depth) * 1vmin);
   width: calc(var(--width) * 1vmin);
   /* background: var(--primary); */
-  animation: turn 20s linear infinite;
 }
+
+:checked ~ .scene .gift {  
+  animation: turn 20s linear infinite ;
+}
+
+
+
 /* .gift__gift {
   height: calc(var(--height) * 1vmin);
   width: calc(min(var(--width), var(--depth)) * 1vmin);
@@ -123,6 +134,7 @@ input {
 }
 
 .gift__lid {
+  opacity: var(--packaged, 0);
   height: 100%;
   width: 100%;
 
@@ -157,11 +169,12 @@ input {
     translate(0, calc(var(--offset) * -0.5vmin))
     rotateX(calc(var(--packaged, 0) * -90deg));
 }
+
 .gift__side:after {
-  content: "";
+  
   position: absolute;
   height: 100%;
-  transform-origin: 50% 100%;
+  transform-origin: 100% 100%;
   /* width: var(--ribbon-width);
     background: var(--ribbon-bg); */
   top: 50%;
@@ -194,6 +207,7 @@ input {
   --b: 0.95;
   --rotate: 270;
 }
+
 /* .gift-lid__side {
     opacity: var(--packaged, 0);
     position: absolute;
@@ -214,26 +228,26 @@ input {
     transform: translate(-50%, -50%) scaleY(var(--packaged, 0));
   } */
 
-.gift-lid__side--top {
-  --b: 1; /*1.1*/
+/* .gift-lid__side--top {
+  --b: 1.1;
   height: calc(var(--depth) * 1vmin);
-}
-.gift-lid__side--top:after {
+} */
+/* .gift-lid__side--top:after {
   display: none;
-}
-.gift-lid__side--back {
+} */
+/* .gift-lid__side--back {
   --b: 0.8;
   bottom: 100%;
   transform-origin: 50% 100%;
   transform: rotateX(90deg);
-}
-.gift-lid__side--front {
-  --b: 0.8; /*0.85*/
+} */
+/* .gift-lid__side--front {
+  --b: 0.8;
   top: 100%;
   transform-origin: 50% 0%;
   transform: rotateX(-90deg);
-}
-.gift-lid__side--right,
+} */
+/* .gift-lid__side--right,
 .gift-lid__side--left {
   --b: 0.8;
   height: 100%;
@@ -244,21 +258,21 @@ input {
   transform: translate(-50%, -50%) rotateY(calc(var(--coefficient, 1) * 90deg))
     translate3d(0, 0, calc(var(--width) * 0.5vmin))
     translate(calc(var(--coefficient, 1) * 50%), 0);
-}
-.gift-lid__side--right:after,
+} */
+/* .gift-lid__side--right:after,
 .gift-lid__side--left:after {
-  /* background: var(--ribbon-bg-rotated); */
+  background: var(--ribbon-bg-rotated);
   width: 100%;
-  /* height: var(--ribbon-width); */
+  height: var(--ribbon-width);
   transform-origin: 100% 50%;
   transform: translate(-50%, -50%) scaleX(var(--packaged, 0));
-}
-.gift-lid__side--left {
+} */
+/* .gift-lid__side--left {
   --coefficient: -1;
-}
-.gift__gift {
+} */
+/* .gift__gift {
   --step: 1;
-}
+} */
 .gift__side--right {
   --step: 2;
 }
@@ -277,9 +291,9 @@ input {
 .gift__side:after {
   --step: 7;
 }
-.gift-lid__side:after {
+/* .gift-lid__side:after {
   --step: 8;
-}
+} */
 /* .gift__ribbon {
     --step: 9;
   } */
