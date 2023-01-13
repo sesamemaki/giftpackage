@@ -5,7 +5,7 @@
   --no-of-steps: 8;
   --primary-hue: 260;
   --secondary-hue: 45;
-  --bg: #588157;
+  --bg: black;
   --primary: hsl(var(--primary-hue), 80%, 50%);
   --secondary: hsl(var(--secondary-hue), 100%, 50%);
   /* --ribbon-bg: linear-gradient(90deg, var(--secondary) 0 10%, transparent 10% 25%, var(--secondary) 25% 75%, transparent 75% 90%, var(--secondary) 90%);
@@ -30,7 +30,7 @@ body {
 }
 input {
   position: fixed;
-  /* top: 0;
+  top: 0;
   left: 0;
   width: 1px;
   height: 1px;
@@ -39,7 +39,7 @@ input {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
-  border-width: 0; */
+  border-width: 0;
 }
 .close,
 .open {
@@ -95,10 +95,13 @@ input {
   height: calc(var(--depth) * 1vmin);
   width: calc(var(--width) * 1vmin);
   /* background: var(--primary); */
+  font-size: 35px;
+  color:#fff;
 }
 
 :checked ~ .scene .gift {  
   animation: turn 20s linear infinite ;
+  font-size: 0;
 }
 
 
